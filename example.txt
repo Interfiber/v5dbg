@@ -1,0 +1,5 @@
+# V5DBG (CLIENT) CONNECTED TO REMOTE CLIENT WITH PROTOCOL VERSION 1
+# GITHUB: https://github.com/Interfiber/v5dbg
+
+# FOR MACRO INFO SEE: https://v5dbg.beachmont.xyz/macros.html
+# FOR 

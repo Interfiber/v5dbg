@@ -1,0 +1,11 @@
+$function 
+  * Declares a stack traceable function, should be the first line in a function
+
+$expose
+  * Exposes the value of a local variable for debugging
+
+$breakable_cstr(name)
+  * Marks a breakpoint location, can be referred to by its string name
+
+$breakable_auto
+  * Marks a breakpoint location by file and line number
