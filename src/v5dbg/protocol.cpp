@@ -6,7 +6,7 @@ std::string V5Dbg_SerializeMessage(v5dbg_message_t message)
 {
   std::stringstream ss;
 
-  ss << "] "; // All debugger messages start with %
+  ss << "%"; // All debugger messages start with %
   ss << V5DBG_SERVER_VERSION;
   ss << ":";
   ss << message.type;
@@ -21,12 +21,19 @@ v5dbg_message_t V5Dbg_DeserializeMessage(const std::string &msg)
   const int tChars = msg.size();
   int collectedArguments = 0;
 
+  if (msg[0] != '%')
+  {
+    printf("Invalid message! No %% starting");
+    return {};
+  }
+
   std::string allocatedMessage;
 
   std::vector<std::string> parameters;
   parameters.reserve(3); // Protcol version, Message type, Message buffer
 
-  for (int i = 0; i < tChars; i++)
+  // Start after %
+  for (int i = 1; i < tChars; i++)
   {
     char c = msg[i];
 
