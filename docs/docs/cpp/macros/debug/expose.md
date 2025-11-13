@@ -3,7 +3,7 @@ description: Documentation for the $expose macro which is used to expose memory 
 icon: octicons/arrow-switch-24
 ---
 
-# `$expose`
+# `$expose(T)`
 
 !!! abstract "Version information"
     Introduced in version **v0.1** :octicons-tag-24:
@@ -12,7 +12,7 @@ icon: octicons/arrow-switch-24
 
 ## About
 
-The `$expose` macro allows v5dbg to **expose variables** to the debugger. The exposed variables can be **viewed and modified** later using debugger commands such as [`print`](../../../debugger/cmds/print.md)
+The `$expose` macro allows v5dbg to **expose variables** to the debugger. The exposed variables can be **viewed and modified** later using debugger commands such as [`print`](../../../debugger/cmds/print.md) and [`set`](../../../debugger/cmds/set.md)
 
 ??? question "Why do I need to use this macro?"
     V5dbg **cannot see** where local variables are **in memory**, see [the engineering page](../../../debug_server/exposed_memory.md) for more information.
@@ -28,7 +28,7 @@ The `$expose` macro allows v5dbg to **expose variables** to the debugger. The ex
     The `$expose` macro allows you to expose memory which **should be marked as const**. For example the following code is valid:
 
     ```c++
-    #include "v5dbg/state.h"
+    #include "v5dbg/debug.h"
 
     void funcWithParams(const std::string &data)
     {
@@ -55,7 +55,7 @@ The `$expose` macro allows v5dbg to **expose variables** to the debugger. The ex
 === "Single scope"
 
     ```c++ hl_lines="11 12 17" linenums="1"
-    #include "v5dbg/state.h"
+    #include "v5dbg/debug.h"
 
     void
     opcontrol()
@@ -85,7 +85,7 @@ The `$expose` macro allows v5dbg to **expose variables** to the debugger. The ex
 === "Multiple scopes"
 
     ```c++ hl_lines="8 22" linenums="1"
-    #include "v5dbg/state.h"
+    #include "v5dbg/debug.h"
 
     void
     printAndSleep(const std::string &p)

@@ -30,7 +30,7 @@ The `$function` macro allows v5dbg to generate a **backtrace** to determine the 
 === "Single function"
 
     ```c++ hl_lines="7" linenums="1"
-    #include "v5dbg/state.h"
+    #include "v5dbg/debug.h"
 
     void
     opcontrol()
@@ -54,7 +54,7 @@ The `$function` macro allows v5dbg to generate a **backtrace** to determine the 
 === "Multiple functions"
 
     ```c++ hl_lines="6" linenums="1"
-    #include "v5dbg/state.h"
+    #include "v5dbg/debug.h"
 
     void
     printAndSleep(const std::string &p)

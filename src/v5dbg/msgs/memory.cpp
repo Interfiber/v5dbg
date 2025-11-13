@@ -66,7 +66,6 @@ V5Dbg_LMemForHandle(v5dbg_server_state_t* pState, const v5dbg_message_t& msg)
         result.paramBuffer = V5Dbg_FormatPrint("[%s]:%s", prettyPrint.typeName.c_str(), prettyPrint.varName.c_str());
 
         // debug info location
-
         result.paramBuffer += V5Dbg_FormatPrint(":[%s]:%i:[%s]", cPoint.filePath.c_str(), cPoint.lineNumber,
                                                 prettyPrint.printBuffer.c_str());
 

@@ -7,6 +7,8 @@ hide:
 
 # V5 Debugger
 
+![Debugger preview](https://private-user-images.githubusercontent.com/60157233/513650618-ce460835-18f0-47c0-9e6e-89d98043fe6c.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjMwNzcxNjksIm5iZiI6MTc2MzA3Njg2OSwicGF0aCI6Ii82MDE1NzIzMy81MTM2NTA2MTgtY2U0NjA4MzUtMThmMC00N2MwLTllNmUtODlkOTgwNDNmZTZjLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTExMTMlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMTEzVDIzMzQyOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTIzNmNiNmUzMGUwZGQ3ZDEwNGUxZGE2MmEwOTY1MGY0ZmY3MTJjYmM4ZjY0ZjhkOGNlMzM3ZDE1MDk5ZjQzNTUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.Mgo3gnuwXMs_eWKwE-uzFazbe2rby1BZRPyhPY-7tNQ){ align=right width="50%" }
+
 The only true VEX debugger™
 
 !!! example "V5dbg is still experimental"
@@ -16,6 +18,9 @@ The only true VEX debugger™
     [:octicons-bug-24: Bug Tracker](https://github.com/Interfiber/v5dbg/issues)
 
     [:octicons-tag-24: Releases Page](https://github.com/Interfiber/v5dbg/releases)
+
+<br>
+<br>
 
 ## What can v5dbg do?
 
@@ -27,9 +32,9 @@ The only true VEX debugger™
 
     Use **breakpoints** to suspend the program at specific points and obtain realtime **stacktraces**.
 
-    [:octicons-arrow-right-24: C++ Documentation](cpp/macros/debug/function.md)
+    [:octicons-arrow-right-24: C++ Documentation](cpp/macros/debug/break.md)
 
-    [:octicons-arrow-right-24: Debugger Documentation](debugger/commands.md#Breakpoints)
+    [:octicons-arrow-right-24: Debugger Documentation](debugger/cmds/break.md)
 
 - :fontawesome-solid-memory: Manage memory
 
@@ -39,7 +44,7 @@ The only true VEX debugger™
 
     [:octicons-arrow-right-24: C++ Documentation](cpp/macros/debug/expose.md)
 
-    [:octicons-arrow-right-24: Debugger Documentation](debugger/commands.md#Memory)
+    [:octicons-arrow-right-24: Debugger Documentation](debugger/cmds/set.md)
 
 - :fontawesome-solid-bolt: Inspect device states
 
