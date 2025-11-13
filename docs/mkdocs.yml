@@ -79,6 +79,7 @@ theme:
     - content.code.copy
     - navigation.top
     - navigation.instant
+    - navigation.instant.preview
     - content.code.annotate
     - toc.integrate
     - navigation.footer
