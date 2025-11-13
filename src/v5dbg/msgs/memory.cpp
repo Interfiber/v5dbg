@@ -1,11 +1,11 @@
 #include "v5dbg/debinfo.h"
-#include "v5dbg/state.h"
 #include "v5dbg/msg.h"
 #include "v5dbg/pretty.h"
 #include "v5dbg/protocol.h"
 #include "v5dbg/server.h"
 #include "v5dbg/set.h"
 #include "v5dbg/stack.h"
+#include "v5dbg/state.h"
 #include "v5dbg/subargs.h"
 #include "v5dbg/util.h"
 
@@ -66,7 +66,8 @@ V5Dbg_LMemForHandle(v5dbg_server_state_t* pState, const v5dbg_message_t& msg)
         result.paramBuffer = V5Dbg_FormatPrint("[%s]:%s", prettyPrint.typeName.c_str(), prettyPrint.varName.c_str());
 
         // debug info location
-        result.paramBuffer += V5Dbg_FormatPrint(":%s:%i:[%s]", cPoint.filePath.c_str(), cPoint.lineNumber,
+
+        result.paramBuffer += V5Dbg_FormatPrint(":[%s]:%i:[%s]", cPoint.filePath.c_str(), cPoint.lineNumber,
                                                 prettyPrint.printBuffer.c_str());
 
         V5Dbg_WriteToOut(V5Dbg_SerializeMessage(result));
@@ -113,7 +114,7 @@ V5Dbg_SetMemoryHandle(v5dbg_server_state_t* pState, const v5dbg_message_t& msg)
   v5dbg_variable_set_mode_e setMode = VARIABLE_SET_MODE_SINGLE;
 
   // enum can be converted from an int, v5dbg_variable_set_mode_e is included in the spec document
-  setMode = (v5dbg_variable_set_mode_e) std::stoi(arguments[4]);
+  setMode = (v5dbg_variable_set_mode_e)std::stoi(arguments[4]);
 
   // Set memory
 
