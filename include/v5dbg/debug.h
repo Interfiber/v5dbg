@@ -26,10 +26,7 @@ private:
  * Begin a debuggable function
  * @note Without this your function will not appear in stack traces and most debugger functions will not work
  */
-#define $function                                                                                                      \
-  __v5dbg_func:                                                                                                        \
-  static V5DbgStackMemory _v5dbg_stack_func_memory;                                                                                      \
-  V5DbgFunction _v5dbg_stack_func(__PRETTY_FUNCTION__, __FILE__, __LINE__, &&__v5dbg_func, &_v5dbg_stack_func_memory); \
+#define $function static V5DbgStackMemory _v5dbg_stack_func_memory; V5DbgFunction _v5dbg_stack_func(__PRETTY_FUNCTION__, __FILE__, __LINE__, nullptr, &_v5dbg_stack_func_memory);
 
 
 /**

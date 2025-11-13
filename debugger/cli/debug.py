@@ -6,8 +6,11 @@ import argparse
 import sys
 from prompt_toolkit.history import FileHistory
 from prompt_toolkit.completion import Completer, Completion
+from prompt_toolkit.cursor_shapes import CursorShape
 from prompt_toolkit import HTML, PromptSession
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
+from prompt_toolkit.lexers import PygmentsLexer
+from pygments.lexers.shell import BashLexer
 from client.client import DebuggerClient, DebuggerState
 from config import DebuggerConfig
 from client.stack import StackFrame
@@ -42,13 +45,11 @@ class Debugger(Completer):
     commands: list
     parser: argparse.ArgumentParser
     client: DebuggerClient
-    cached_stack: list[StackFrame]
 
     def __init__(self, options: DebuggerOptions, client: DebuggerClient):
         self.opts = options
         self.commands = []
         self.client = client
-        self.cached_stack = []
 
         self.parser = argparse.ArgumentParser(
             prog="v5dbg",
@@ -97,15 +98,18 @@ class Debugger(Completer):
 
 
 
-    """
-    Used by the prompt to return the current stack frame
-    """
-    def get_toolbar_frame(self):
-        if self.client.state == DebuggerState.SUSPEND:
-            frame = self.cached_stack[self.client.active_thread.frame_index]
-            return f" | {frame.name} in {frame.file}"
-        else:
-            return ''
+    # Toolbar
+    def get_toolbar_status(self):
+      # Left version info
+      left = DebuggerConfig.left() + ' | '
+
+      # Breakpoint enabled?
+      b_status = ('[Breakpoint] ' if self.client.active_break is not None else '')
+
+      # Program state
+      p_status = ('[Suspended]' if self.client.state == DebuggerState.SUSPEND else '[Executing]') + ' | '
+
+      return HTML(left + b_status + p_status)
 
     """
     Ask for a debugger command and execute it
@@ -118,12 +122,15 @@ class Debugger(Completer):
                 vi_mode=True,
                 auto_suggest=AutoSuggestFromHistory(),
                 completer=self,
-                bottom_toolbar=lambda: HTML(DebuggerConfig.left() + ' | ' + f'{'[Breakpoint] ' if self.client.active_break is not None else ''}' + ('[Suspended]' if self.client.state == DebuggerState.SUSPEND else '[Executing]') + self.get_toolbar_frame())
+                bottom_toolbar=self.get_toolbar_status,
+                complete_in_thread=True,
+                lexer=PygmentsLexer(BashLexer),
+                cursor=CursorShape.BLINKING_UNDERLINE
             )
         except EOFError:
             sys.exit(0)
         except:
-            return True
+            raise Exception("Prompt failure") 
 
         # Crude argument splitter
 
@@ -147,14 +154,12 @@ class Debugger(Completer):
         try:
             parsed = self.parser.parse_args(arguments)
         except:
-            self.cached_stack = self.client.get_stacktrace(True)
             return False
 
         for exe in self.commands:
             exe.execute(self.client, self, parsed)
 
 
-        self.cached_stack = self.client.get_stacktrace(True)
 
         return False
 

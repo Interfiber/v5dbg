@@ -179,7 +179,7 @@ class DebugServer:
             if data[0] != '%':
                 # Ignore v5dbg log messages (for now...)
                 if not data.startswith("(v5dbg)") and not data.startswith("(v5dbg-sys-init)") and self.is_open:
-                    print_formatted_text(ANSI(f"stdout >> {data}"), end="")
+                  print_formatted_text(ANSI(f"stdout >> {data}"), end="")
 
                 continue
 
