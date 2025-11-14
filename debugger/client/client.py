@@ -82,7 +82,7 @@ class DebuggerClient:
     Enable/disable a breakpoint by numerical ID
 
     Args:
-
+        id (int): ID of the breakpoint to enable/disable
         enabled (bool): True to enable the breakpoint, false if otherwise
     """
 

@@ -1,4 +1,4 @@
-from client.client import DebuggerClient
+from client.client import DebuggerClient, DebuggerState
 from cli.colors import Colors
 from cli.debug import CommandExecutor, Debugger
 from prompt_toolkit import print_formatted_text
@@ -78,6 +78,12 @@ class SetCommandBase:
         name: str,
         buffer: str,
     ):
+        if client.state != DebuggerState.SUSPEND:
+            print_formatted_text(FormattedText([
+              (Colors.RED, 'The program must be in the SUSPEND state to set variables')
+            ]))
+
+            return
         response_code = client.set_variable(mode, name, buffer)
 
         if SetCommandBase.handle_return_code(response_code):
@@ -147,7 +153,7 @@ class SetCommand(CommandExecutor, SetCommandBase):
     def execute(self, client: DebuggerClient, debugger: Debugger, command):
         if command.debugger != "set":
             return
-
+        
         self.run_set(
             DebuggerVariableSetMode.SINGLE,
             client,
