@@ -13,7 +13,7 @@ jobs:
 
             - name: Run pros-build
               id: v5dbg
-              uses: LemLib/pros-build@v4.0.0
+              uses: LemLib/pros-build@v4.0.1
 
             - name: Upload release
               uses: actions/upload-artifact@v4
