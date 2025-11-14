@@ -33,12 +33,12 @@ jobs:
               run: python3 integration/ci.py client
 
             - name: Extract build
-              run: unzip v5dbg_debugger.zip -d v5dbg_debugger
+              run: unzip v5dbg_debugger*.zip -d v5dbg_debugger
 
             - name: Upload release
               uses: actions/upload-artifact@v4
               with:
-                  name: v5dbg_debugger__${{ runner.os }}
+                  name: v5dbg_debugger.${{ runner.os }}.${{ runner.arch }}
                   path: v5dbg_debugger/*
 
     server:
