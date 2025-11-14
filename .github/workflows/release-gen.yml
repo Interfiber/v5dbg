@@ -1,0 +1,22 @@
+name: "Generate build artifacts for release"
+
+on:
+    release:
+    workflow_dispatch: 
+
+jobs:
+    server:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Run pros-build
+              id: v5dbg
+              uses: LemLib/pros-build@v4.0.0
+
+            - name: Upload release
+              uses: actions/upload-artifact@v4
+              with:
+                name: ${{ steps.v5dbg.name }}
+                path: ${{ github.workspace }}/template/*
