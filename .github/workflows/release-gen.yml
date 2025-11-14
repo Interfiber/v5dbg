@@ -12,11 +12,13 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Run pros-build
-              id: v5dbg
+              id: test
               uses: LemLib/pros-build@v4.0.1
+              with:
+                multithreading: false
 
             - name: Upload release
               uses: actions/upload-artifact@v4
               with:
-                name: ${{ steps.v5dbg.name }}
+                name: ${{ steps.test.name }}
                 path: ${{ github.workspace }}/template/*
