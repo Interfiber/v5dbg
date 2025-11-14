@@ -26,10 +26,10 @@ jobs:
               run: pip3 install pros-cli
 
             - name: Build template
-              run: /bin/bash -c "export PATH=$PATH:$PWD/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin; make template"
+              run: /bin/bash -c "export PATH=$PATH:$PWD/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin; make template -j"
 
             - name: Upload release
               uses: actions/upload-artifact@v4
               with:
-                name: v5dbg_server.zip
+                name: v5dbg_server
                 path: ${{ github.workspace }}/v5dbg@*.zip
