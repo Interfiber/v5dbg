@@ -25,7 +25,7 @@ The `$expose` macro allows v5dbg to **expose variables** to the debugger. The ex
     - This macro **requires** the current function to be [debuggable](../debug/function.md4)
 
 ??? memory-error "Potential memory error"
-    The `$expose` macro allows you to expose memory which **should be marked as const**. For example the following code is valid:
+    The `$expose` macro allows you to expose memory which **should be marked as const**, for example the following code is valid:
 
     ```c++
     #include "v5dbg/debug.h"

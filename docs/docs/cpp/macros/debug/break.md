@@ -12,7 +12,7 @@ icon: octicons/pause-24
 
 ## About
 
-The `$break` macro allows the programmer to insert **breakpoint locations**. Once breakpoints are placed they be **enabled** by their file path or ID later in the debugger using the [`break`](../../../debugger/cmds/break.md) command.
+The `$break` macro allows the programmer to insert **breakpoint locations**. Once breakpoints are placed they can be **enabled** by their file path or ID later in the debugger using the [`break`](../../../debugger/cmds/break.md) command.
 
 For **conditional breakpoints** see the [`$cbreak`](./cbreak.md) macro.
 
@@ -21,7 +21,7 @@ For **conditional breakpoints** see the [`$cbreak`](./cbreak.md) macro.
 !!! danger "Required environment"
     - This macro **requires** the debug server to have been initialized before being called.
     - This macro **requires** the current thread to be supervised with [$ntask](./ntask.md) or `V5Dbg_Init`
-    - This macro **requires** the current function to be [debuggable](../debug/function.md4)
+    - This macro **requires** the current function to be [debuggable](../debug/function.md)
 
 ## Example
 

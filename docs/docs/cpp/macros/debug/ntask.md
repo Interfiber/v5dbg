@@ -23,7 +23,7 @@ The `$ntask` macro informs the debug server of a newly spawned thread/task. It s
     - This macro **requires** the debug server to have been initialized before being called.
 
 !!! bug "Task names"
-    Make sure that every task has a **unique name** otherwise tasks can be confused internally by the debug server.
+    Make sure that every task has a **unique name**, otherwise tasks can be confused internally by the debug server.
 
 ## Example
 

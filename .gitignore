@@ -23,3 +23,5 @@ docs/site/*
 docs/lib64/*
 docs/lib/*
 docs/bin/*
+
+*.zip
