@@ -28,8 +28,17 @@ jobs:
             - name: Build template
               run: /bin/bash -c "export PATH=$PATH:$PWD/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin; make template -j"
 
+            - name: Extract template
+              run: unzip v5dbg*.zip -d template
+
+            - name: Prime release (name)
+              run: echo "library_name=$(awk -F'=' '/^LIBNAME:=/{print $2}' Makefile)" >> $GITHUB_ENV
+            
+            - name: Prime release (version)
+              run: echo "version=$(awk -F'=' '/^VERSION:=/{print $2}' Makefile)" >> $GITHUB_ENV
+
             - name: Upload release
               uses: actions/upload-artifact@v4
               with:
-                name: v5dbg_server
-                path: ${{ github.workspace }}/v5dbg@*.zip
+                name: ${{ env.library_name }}@${{ env.version }}.zip
+                path: ${{ github.workspace }}/${{ env.library_name }}@${{ env.version }}.zip
