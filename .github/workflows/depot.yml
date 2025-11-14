@@ -20,6 +20,5 @@ jobs:
           token: ${{ github.token }}
           # target repo for depots
           repo: Interfiber/v5dbg
-          source-repo: Interfiber/v5dbg
           # makes the json output human readable
           readable-json: true
