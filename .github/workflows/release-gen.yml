@@ -31,7 +31,6 @@ jobs:
             
             - name: Run build
               run: python3 integration/ci.py client
-              working-directory: v5dbg-server
 
             - name: Extract build
               run: unzip v5dbg_debugger.zip -d v5dbg_debugger
