@@ -40,5 +40,5 @@ jobs:
             - name: Upload release
               uses: actions/upload-artifact@v4
               with:
-                name: ${{ env.library_name }}@${{ env.version }}.zip
-                path: ${{ github.workspace }}/${{ env.library_name }}@${{ env.version }}.zip
+                name: ${{ env.library_name }}@${{ env.version }}
+                path: ${{ github.workspace }}/template
