@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['debugger/main.py'],
+    ['debugger\\main.py'],
     pathex=[],
     binaries=[],
     datas=[],

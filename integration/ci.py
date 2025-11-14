@@ -22,7 +22,12 @@ def zip_artifact(name: str, dir: str, enable_platform: bool = False):
 
 # Create a temporary directory
 def tempdir(name: str) -> str:
-    dir = f"/tmp/{name}-ci-temp"
+    tmpdir = "/tmp"
+       
+    if os.name == 'nt':
+        tmpdir = os.getenv("temp")
+    
+    dir = f"{tmpdir}/{name}-ci-temp"
     os.makedirs(dir)
 
     return dir
@@ -61,7 +66,7 @@ def build_client():
     os.chdir("v5dbg-server")
     os.system("cargo build --release")
 
-    shutil.copy(exe('target/release/v5dbg-server'), f'{client_dir}/v5dbg-server')
+    shutil.copy(exe('target/release/v5dbg-server'), exe(f'{client_dir}/v5dbg-server'))
 
     os.chdir("../")
 
