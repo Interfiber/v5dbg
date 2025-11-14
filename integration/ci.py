@@ -1,6 +1,8 @@
 import sys
 import os
 import shutil
+import sys
+import platform
 
 def exe(file: str):
     if os.name == 'nt':
@@ -8,8 +10,11 @@ def exe(file: str):
 
     return file
 
-def zip_artifact(name: str, dir: str):
-    print(f'archive zip {name}.zip from {dir}')
+def zip_artifact(name: str, dir: str, enable_platform: bool = False):
+    print(f'archive zip {name} from {dir}')
+
+    if enable_platform:
+        name += f'.{platform.system().lower()}-{platform.machine()}'
 
     shutil.make_archive(f'{name}', 'zip', dir)
 
@@ -60,7 +65,7 @@ def build_client():
 
     os.chdir("../")
 
-    zip_artifact("v5dbg_debugger", client_dir)
+    zip_artifact("v5dbg_debugger", client_dir, True)
 
 # Arguments
 args = sys.argv
