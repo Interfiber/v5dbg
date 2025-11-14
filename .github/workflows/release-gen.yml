@@ -11,14 +11,25 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
-            - name: Run pros-build
-              id: test
-              uses: LemLib/pros-build@v4.0.1
+            - name: Set up Python
+              uses: actions/setup-python@v5 
               with:
-                multithreading: false
+                python-version: '3.14.0'
+
+            - name: Download compiler toolchain
+              run: curl -#L "https://developer.arm.com/-/media/Files/downloads/gnu/13.3.rel1/binrel/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi.tar.xz" -O
+
+            - name: Extract compiler toolchain
+              run: tar -xvf arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi.tar.xz
+
+            - name: Install PROS cli
+              run: pip3 install pros-cli
+
+            - name: Build template
+              run: export PATH=$PATH:$PWD/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi; make template
 
             - name: Upload release
               uses: actions/upload-artifact@v4
               with:
                 name: ${{ steps.test.name }}
-                path: ${{ github.workspace }}/template/*
+                path: ${{ github.workspace }}/v5dbg@*.zip
