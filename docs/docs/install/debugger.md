@@ -9,8 +9,8 @@ icon: octicons/download-24
 
 Download the latest `v5dbg_debugger.zip` file for your platform from the [releases page](https://github.com/Interfiber/v5dbg/releases)
 
-* For **Windows** users download `v5dbg_debugger_win32.zip`
-* For **GNU/Linux** users download `v5dbg_debugger_linux64.zip`
+* For **Windows** users download `v5dbg_debugger.windows-AMD64.zip`
+* For **GNU/Linux** users download `v5dbg_debugger.linux-x86_64.zip`
 * **MacOS** is not currently built by the CI/CD system and archives are not published
 
 ??? tip "Verify checksums"

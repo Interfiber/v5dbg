@@ -36,10 +36,10 @@ Download the latest `v5dbg_server.zip` from the [releases page](https://github.c
 
 ## Copy server source code
 
-Inside the newly created `v5dbg` folder copy
+Extract the downloaded zip file and copy the following directories:
 
-- [x] `v5dbg/include/v5dbg` into `include`
-- [x] `v5dbg/src/v5dbg` into `src`
+- [x] `include/v5dbg` into `include`
+- [x] `src/v5dbg` into `src`
 
 ## Build your program
 
