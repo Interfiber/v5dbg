@@ -1,0 +1,12 @@
+[
+  {
+    "metadata": {
+      "location": "https://github.com/Interfiber/v5dbg/releases/download/v0.2/v5dbg%400.0.2.zip"
+    },
+    "name": "v5dbg",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": "^4.2.1",
+    "target": "v5",
+    "version": "0.0.2"
+  }
+]
