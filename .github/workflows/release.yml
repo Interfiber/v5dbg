@@ -18,6 +18,8 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
+        - name: Checkout
+          uses: actions/checkout@v4
         - name: Prime release (version)
           run: echo "version=$(awk -F'=' '/^VERSION:=/{print $2}' Makefile)" >> $GITHUB_ENV
 
