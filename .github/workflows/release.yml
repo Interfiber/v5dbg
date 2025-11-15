@@ -26,7 +26,7 @@ jobs:
         - name: Download server artifact
           uses: actions/download-artifact@v4
           with:
-            name: v5dbg@${{ env.version }}.zip
+            name: v5dbg@${{ env.version }}
         - name: Download debugger (win32)
           uses: actions/download-artifact@v4
           with:
@@ -34,15 +34,15 @@ jobs:
         - name: Download debugger (linux)
           uses: actions/download-artifact@v4
           with:
-            name: v5dbg_debugger.Linux.X64.zip
+            name: v5dbg_debugger.Linux.X64
         - name: Make GitHub release
           uses: softprops/action-gh-release@v2
           with:
             make_latest: true
             files: |
-              v5dbg_debugger.Windows.X64.zip
-              v5dbg_debugger.Linux.X64.zip
-              v5dbg@${{ env.version }}.zip
+              v5dbg_debugger.Windows.X64
+              v5dbg_debugger.Linux.X64
+              v5dbg@${{ env.version }}
 
     depot:
       permissions:
