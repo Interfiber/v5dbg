@@ -12,6 +12,8 @@ jobs:
             os: [ubuntu-latest, windows-latest]
 
         runs-on: ${{ matrix.os }}
+        outputs:
+          platform_build: ${{ steps.upload.outputs.artifact-url }}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -23,18 +25,18 @@ jobs:
 
             - name: Install rust
               uses: actions-rust-lang/setup-rust-toolchain@v1
-            
+
             - name: Install dependencies (Rust) (Linux-only)
               if: matrix.os == 'ubuntu-latest'
               run: sudo apt install libdbus-1-dev pkg-config libudev-dev
-            
+
             - name: Build comms server
               run: cargo build --release
               working-directory: v5dbg-server
 
             - name: Install dependencies (Python)
               run: pip install pygments prompt_toolkit pyinstaller
-            
+
             - name: Run build
               run: python3 integration/ci.py client
 
@@ -43,12 +45,15 @@ jobs:
 
             - name: Upload release
               uses: actions/upload-artifact@v4
+              id: upload
               with:
                   name: v5dbg_debugger.${{ runner.os }}.${{ runner.arch }}
                   path: v5dbg_debugger/*
 
-    v5dbg-server:
+    v5dbg:
         runs-on: ubuntu-latest
+        outputs:
+          platform_build: ${{ steps.upload.outputs.artifact-url }}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -81,6 +86,7 @@ jobs:
 
             - name: Upload release
               uses: actions/upload-artifact@v4
+              id: upload
               with:
                   name: ${{ env.library_name }}@${{ env.version }}
                   path: ${{ github.workspace }}/template

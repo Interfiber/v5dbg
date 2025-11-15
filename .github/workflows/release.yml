@@ -1,4 +1,4 @@
-name: Build & release cycle 
+name: Build & release cycle
 
 on:
     workflow_dispatch:
@@ -11,7 +11,7 @@ jobs:
     # Build debugger and debug server for Win32 and Linux64
     build:
       uses: ./.github/workflows/release-gen.yml
-    
+
     # Attach to github release
     upload:
       needs: build
@@ -19,6 +19,5 @@ jobs:
 
       steps:
         - name: Attach to GitHub release
-          run: ls -al
+          run: echo ${{ steps.v5dbg.outputs.platform_build }}
         #   uses: softprops/action-gh-release@v2
-
