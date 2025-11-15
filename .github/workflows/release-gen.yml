@@ -5,7 +5,7 @@ on:
     workflow_dispatch:
 
 jobs:
-    debugger-matrix:
+    debugger-comms-bundle:
         strategy:
           matrix:
             os: [ubuntu-latest, windows-latest]
@@ -24,7 +24,7 @@ jobs:
               uses: actions-rust-lang/setup-rust-toolchain@v1
             
             - name: Install dependencies (Rust) (Linux-only)
-              if: ${{ runner.os }} == "Linux"
+              if: matrix.os == 'ubuntu-latest'
               run: sudo apt install libdbus-1-dev pkg-config libudev-dev
             
             - name: Build comms server
@@ -46,7 +46,7 @@ jobs:
                   name: v5dbg_debugger.${{ runner.os }}.${{ runner.arch }}
                   path: v5dbg_debugger/*
 
-    server:
+    v5dbg-server:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
