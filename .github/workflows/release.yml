@@ -30,11 +30,13 @@ jobs:
         - name: Download debugger (win32)
           uses: actions/download-artifact@v4
           with:
-            name: v5dbg_debugger.Windows.X64.zip
+            name: v5dbg_debugger.Windows.X64
         - name: Download debugger (linux)
           uses: actions/download-artifact@v4
           with:
             name: v5dbg_debugger.Linux.X64
+        - name: Debug list
+          run: ls -al
         - name: Make GitHub release
           uses: softprops/action-gh-release@v2
           with:
