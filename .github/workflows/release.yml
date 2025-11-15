@@ -23,18 +23,8 @@ jobs:
         - name: Prime release (version)
           run: echo "version=$(awk -F'=' '/^VERSION:=/{print $2}' Makefile)" >> $GITHUB_ENV
 
-        - name: Download server artifact
+        - name: Download artifacts
           uses: actions/download-artifact@v4
-          with:
-            name: v5dbg@${{ env.version }}
-        - name: Download debugger (win32)
-          uses: actions/download-artifact@v4
-          with:
-            name: v5dbg_debugger.Windows.X64
-        - name: Download debugger (linux)
-          uses: actions/download-artifact@v4
-          with:
-            name: v5dbg_debugger.Linux.X64
         - name: Debug list
           run: ls -al
         - name: Make GitHub release
