@@ -5,8 +5,12 @@ on:
     workflow_dispatch:
 
 jobs:
-    debugger:
-        runs-on: ubuntu-latest
+    debugger-matrix:
+        strategy:
+          matrix:
+            os: [ubuntu-latest, windows-latest]
+
+        runs-on: ${{ matrix.os }}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -19,7 +23,8 @@ jobs:
             - name: Install rust
               uses: actions-rust-lang/setup-rust-toolchain@v1
             
-            - name: Install dependencies (Rust)
+            - name: Install dependencies (Rust) (Linux-only)
+              if: ${{ runner.os }} == "Linux"
               run: sudo apt install libdbus-1-dev pkg-config libudev-dev
             
             - name: Build comms server
