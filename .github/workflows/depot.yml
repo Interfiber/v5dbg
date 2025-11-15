@@ -1,10 +1,8 @@
 name: Populate Depot json
 
 on: 
-  # runs when this repository's releases are modified
-  release: 
-  # allows for manual dispatching of the workflow
   workflow_dispatch: 
+  workflow_call:
 
 jobs:
   populate:

@@ -1,0 +1,24 @@
+name: Build & release cycle 
+
+on:
+    workflow_dispatch:
+    push:
+        tags:
+            - 'v*'
+
+
+jobs:
+    # Build debugger and debug server for Win32 and Linux64
+    build:
+      uses: ./.github/workflows/release-gen.yml
+    
+    # Attach to github release
+    upload:
+      needs: build
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Attach to GitHub release
+          run: ls -al
+        #   uses: softprops/action-gh-release@v2
+
