@@ -43,5 +43,8 @@ jobs:
               v5dbg@${{ env.version }}.zip
 
     depot:
+      permissions:
+        # permits reading of releases and writing to the depot branch
+        contents: write
       needs: build
       uses: ./.github/workflows/depot.yml
