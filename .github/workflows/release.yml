@@ -18,6 +18,30 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
-        - name: Attach to GitHub release
-          run: echo ${{ steps.v5dbg.outputs.platform_build }}
-        #   uses: softprops/action-gh-release@v2
+        - name: Prime release (version)
+          run: echo "version=$(awk -F'=' '/^VERSION:=/{print $2}' Makefile)" >> $GITHUB_ENV
+
+        - name: Download server artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: v5dbg@${{ env.version }}.zip
+        - name: Download debugger (win32)
+          uses: actions/download-artifact@v4
+          with:
+            name: v5dbg_debugger.Windows.X64.zip
+        - name: Download debugger (linux)
+          uses: actions/download-artifact@v4
+          with:
+            name: v5dbg_debugger.Linux.X64.zip
+        - name: Make GitHub release
+          uses: softprops/action-gh-release@v2
+          with:
+            make_latest: true
+            files: |
+              v5dbg_debugger.Windows.X64.zip
+              v5dbg_debugger.Linux.X64.zip
+              v5dbg@${{ env.version }}.zip
+
+    depot:
+      needs: build
+      uses: ./.github/workflows/depot.yml

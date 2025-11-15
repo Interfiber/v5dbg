@@ -12,8 +12,6 @@ jobs:
             os: [ubuntu-latest, windows-latest]
 
         runs-on: ${{ matrix.os }}
-        outputs:
-          platform_build: ${{ steps.upload.outputs.artifact-url }}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -52,8 +50,6 @@ jobs:
 
     v5dbg:
         runs-on: ubuntu-latest
-        outputs:
-          platform_build: ${{ steps.upload.outputs.artifact-url }}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
