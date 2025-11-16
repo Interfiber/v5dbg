@@ -25,16 +25,20 @@ jobs:
 
         - name: Download artifacts
           uses: actions/download-artifact@v4
+        - name: Zip downloads
+          run: zip v5dbg_debugger.Windows.X64.zip v5dbg_debugger.Windows.X64; zip v5dbg_debugger.Linux.X64.zip v5dbg_debugger.Linux.X64; zip v5dbg@${{ env.version }}.zip v5dbg@${{ env.version }}
+
         - name: Debug list
           run: ls -al
+
         - name: Make GitHub release
           uses: softprops/action-gh-release@v2
           with:
             make_latest: true
             files: |
-              v5dbg_debugger.Windows.X64
-              v5dbg_debugger.Linux.X64
-              v5dbg@${{ env.version }}
+              v5dbg_debugger.Windows.X64.zip
+              v5dbg_debugger.Linux.X64.zip
+              v5dbg@${{ env.version }}.zip
 
     depot:
       permissions:
