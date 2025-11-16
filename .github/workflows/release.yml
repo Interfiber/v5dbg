@@ -35,7 +35,7 @@ jobs:
 
         - name: Zip Linux
           run: zip ../v5dbg_debugger.Linux.X64.zip *
-          working-directory: v5_debugger.Linux.X64
+          working-directory: v5dbg_debugger.Linux.X64
 
         - name: Zip server
           run: zip v5dbg@${{ env.version }}.zip *
