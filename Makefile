@@ -28,7 +28,7 @@ IS_LIBRARY:=1
 # Be sure that your header files are in the include directory inside of a folder with the
 # same name as what you set LIBNAME to below.
 LIBNAME:=v5dbg
-VERSION:=0.0.2
+VERSION:=0.2.1
 
 # Exclude default main.cpp file
 EXCLUDE_SRC_FROM_LIB= $(SRCDIR)/main.cpp
