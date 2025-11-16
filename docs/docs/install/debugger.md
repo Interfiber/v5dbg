@@ -9,8 +9,8 @@ icon: octicons/download-24
 
 Download the latest `v5dbg_debugger.zip` file for your platform from the [releases page](https://github.com/Interfiber/v5dbg/releases)
 
-* For **Windows** users download `v5dbg_debugger.windows-AMD64.zip`
-* For **GNU/Linux** users download `v5dbg_debugger.linux-x86_64.zip`
+* For **Windows** users download `v5dbg_debugger.Windows.X64.zip`
+* For **GNU/Linux** users download `v5dbg_debugger.Linux.X64.zip`
 * **MacOS** is not currently built by the CI/CD system and archives are not published
 
 ??? tip "Verify checksums"
@@ -34,7 +34,7 @@ Extract the downloaded zip file into an **easily accessible location**. If you w
     This means that the debug server running on the brain **hasn't** sent us any messages in over 5 seconds.
 
     This usually means:
-    
+
     * The user program & debug server have **crashed**
     * The serial connection to the debug server has been **dropped**, try restarting the debugger
     * The user program is **hogging CPU resources** and not allowing the debug server to execute
