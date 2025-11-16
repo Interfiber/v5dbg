@@ -22,20 +22,20 @@ Please read through the requirements carefully
 - PROS toolchain is **installed** and **up-to-date**
     - The easiest way to do this is to use the [VSCode extension](https://marketplace.visualstudio.com/items?itemName=sigbots.pros)
 
-## Downloading the release archive
-
 ??? question "Debugger vs Debug Server"
     The debug server is the program that executes **on the brain** and performs all of the internal debug logic.
 
     The debugger is the program that executes **on your computer** and serves as a frontend to the debug server over USB serial.
 
-## Copy server source code
+## Downloading and installing with PROS conductor
 
-Extract the downloaded zip file and copy the following directories:
+`v5dbg` has a PROS conductor depot avalible which prevents you from having to build and keep the source code up-to-date.
 
-- [x] `include/v5dbg` into `include`
-- [x] `src/v5dbg` into `src`
+```shell
+pros c add-depot v5dbg https://raw.githubusercontent.com/LemLib/LemLib/depot/stable.json
+```
 
-## Build your program
+You can then install the `v5dbg` server with `pros c apply v5dbg`
 
-Using either the VSCode extension, or by calling `pros make` from the terminal make sure that your program builds properly, all v5dbg source code files should automatically be detected and compiled in.
+!!! tip "Updating"
+    If you ever need to **update** v5dbg you can run `pros c upgrade` to upgrade all your dependencies.
