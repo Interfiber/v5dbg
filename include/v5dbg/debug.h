@@ -22,6 +22,10 @@ private:
   v5dbg_thread_t *m_thread;
 };
 
+#ifdef V5DBG_DISABLE // Include stubbed info
+#include "v5dbg/debug.stub.h"
+#else
+
 /**
  * Begin a debuggable function
  * @note Without this your function will not appear in stack traces and most debugger functions will not work
@@ -66,3 +70,5 @@ private:
 
 // stub:macro=$ntask
 #define $ntask V5DbgAutoTask _v5dbg_ctask;
+
+#endif

@@ -1,8 +1,7 @@
-import os
 import io
 
 """
-stub.py generates stub versions of macros and functions so you can easily disable the debugger
+stub.py generates stub versions of macros so you can easily disable the debugger with V5DBG_DISABLE
 """
 
 def gen_macro(params: list[str]) -> str:
@@ -51,4 +50,7 @@ def scan_file(file: io.FileIO):
     new_file_io.write(file_contents_new)
     new_file_io.close()
 
-scan_file(open("include/v5dbg/debug.h", "r"))
+stubbed_files = ["debug.h", "pretty.h"]
+
+for file in stubbed_files:
+    scan_file(open(f"include/v5dbg/{file}", "r"))
