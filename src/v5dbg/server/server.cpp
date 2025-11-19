@@ -23,6 +23,11 @@ V5Dbg_AllocateServerState()
 void
 V5Dbg_StartServer(v5dbg_server_state_t* pState)
 {
+  #ifdef V5DBG_DISABLE
+    info("Debugger disable, refusing to start server. See v5dbg.mk for more information");
+    return;
+  #endif
+
   if (pState == nullptr)
   {
     info("Allocated state is nullptr");
