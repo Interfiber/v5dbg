@@ -11,7 +11,10 @@ def gen_macro(params: list[str]) -> str:
     print(f"> stub macro: {macro_name}")
     print(f"> stub macro arguments: {macro_params}")
 
-    return f"\n/// Stubbed version of normal {macro_name}, automatically generated\n#define {macro_name}({','.join(macro_params).strip()})"
+    result = f"\n/// Stubbed version of normal {macro_name}, automatically generated\n#define {macro_name}({','.join(macro_params).strip()})"
+    result = result.replace("()", "") # Replace empty parenthesis with nothing as they cause compiler errors
+
+    return result
 
 def gen_stub(stub_str: str) -> str:
     result = ""
