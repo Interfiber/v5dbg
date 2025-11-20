@@ -118,11 +118,20 @@ public:
   }
 };
 
+#ifdef V5DBG_DISABLE
+#include "v5dbg/pretty.stub.h"
+#else
+
 /// @brief  Register a pretty printer with a memory type
+// stub:macro=$pretty_printer,func,type
 #define $pretty_printer(func, type) static V5DbgPrettyPrinterLinker _v5dbg_pretty_printer_##type(type, &func);
 
 /// @brief  Register a pretty printer allocator with a memory type
+// stub:macro=$pretty_printer_allocator,func,type
 #define $pretty_printer_allocator(func, type) static V5DbgPrettyPrinterLinker _v5dbg_pretty_printer_buf_##type(type, nullptr, &func);
 
 /// @brief  Link a memory type and C++ typename
+// stub:macro=$link_type_db,cpptype,etype
 #define $link_type_db(cpptype, etype) static V5DbgPrettyPrinterLinker _v5dbg_pretty_printer_typedb_##etype(typeid(cpptype), etype);
+
+#endif

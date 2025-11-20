@@ -16,6 +16,8 @@ WARNFLAGS+=
 EXTRA_CFLAGS=
 EXTRA_CXXFLAGS=
 
+-include ./v5dbg.mk
+
 # Set to 1 to enable hot/cold linking
 USE_PACKAGE:=1
 
@@ -33,7 +35,7 @@ VERSION:=0.2.1
 # Exclude default main.cpp file
 EXCLUDE_SRC_FROM_LIB= $(SRCDIR)/main.cpp
 EXCLUDE_SRC_FROM_LIB+=$(foreach file, $(SRCDIR)/main,$(foreach cext,$(CEXTS),$(file).$(cext)) $(foreach cxxext,$(CXXEXTS),$(file).$(cxxext)))
-TEMPLATE_FILES=$(INCDIR)/$(LIBNAME)/*.h $(INCDIR)/$(LIBNAME)/*.hpp
+TEMPLATE_FILES=$(INCDIR)/$(LIBNAME)/*.h $(INCDIR)/$(LIBNAME)/*.hpp v5dbg.mk
 
 .DEFAULT_GOAL=quick
 
@@ -41,4 +43,3 @@ TEMPLATE_FILES=$(INCDIR)/$(LIBNAME)/*.h $(INCDIR)/$(LIBNAME)/*.hpp
 ################################################################################
 ########## Nothing below this line should be edited by typical users ###########
 -include ./common.mk
--include ./stub.mk

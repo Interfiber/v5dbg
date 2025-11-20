@@ -22,10 +22,15 @@ private:
   v5dbg_thread_t *m_thread;
 };
 
+#ifdef V5DBG_DISABLE // Include stubbed info
+#include "v5dbg/debug.stub.h"
+#else
+
 /**
  * Begin a debuggable function
  * @note Without this your function will not appear in stack traces and most debugger functions will not work
  */
+// stub:macro=$function
 #define $function static V5DbgStackMemory _v5dbg_stack_func_memory; V5DbgFunction _v5dbg_stack_func(__PRETTY_FUNCTION__, __FILE__, __LINE__, nullptr, &_v5dbg_stack_func_memory);
 
 
@@ -33,6 +38,7 @@ private:
  * @brief  Expose a scoped variable to the debugger, also handles pretty printer and pretty buffer allocation handles
  * @note Can only be called within a debuggable function
  */
+// stub:macro=$expose,target
 #define $expose(target)                                                                                                \
   constexpr int _v5dbg_var_line_##target = __LINE__; \
   static v5dbg_variable_t _v5dbg_var_info_##target{}; \
@@ -50,14 +56,19 @@ private:
   auto _v5dbg_var_dealloc_##target = _v5dbg_stack_func.expose(_v5dbg_var_##target, _v5dbg_var_alloc_##target);
 
 /// @brief Disabled by default breakpoint
+// stub:macro=$break
 #define $break { static v5dbg_breakpoint_t* _v5dbg_break_c = V5Dbg_Breakpoint(false, { .filePath = __FILE__, .lineNumber = __LINE__, .functionName = __PRETTY_FUNCTION__ }); \
     V5Dbg_BreakpointMain(V5Dbg_GetCurrentServer(), _v5dbg_break_c); \
   }
 
 /// @brief  Enabled by default conditional breakpoint
+// stub:macro=$cbreak,value
 #define $cbreak(...) { \
   static v5dbg_breakpoint_t* _v5dbg_break_c = V5Dbg_BreakpointCond(true, { .filePath = __FILE__, .lineNumber = __LINE__, .functionName = __PRETTY_FUNCTION__ }, [&] () { return __VA_ARGS__; }); \
   V5Dbg_BreakpointMain(V5Dbg_GetCurrentServer(), _v5dbg_break_c); \
 }
 
+// stub:macro=$ntask
 #define $ntask V5DbgAutoTask _v5dbg_ctask;
+
+#endif
