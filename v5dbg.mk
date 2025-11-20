@@ -12,3 +12,5 @@ EXTRA_CXXFLAGS += $(if $(filter $(ENABLE_DEBUGGER),true),,-DV5DBG_DISABLE)
 stub:
 	@echo "Calling stub compiler..."
 	@python3 stub.py
+
+cfg: clean stub all

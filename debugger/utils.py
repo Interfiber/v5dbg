@@ -13,7 +13,7 @@ def exe(file):
 def find_server():
     if os.path.exists(exe('./bin/v5dbg-server')):
         return exe('./bin/v5dbg-server')
-    elif os.path.exists(exe('./v5dbg-server')):
+    elif os.path.exists(exe('./v5dbg-server')) and os.path.isfile(exe('./v5dbg-server')):
         return exe('./v5dbg-server')
     elif os.path.exists(exe('./v5dbg-server/target/debug/v5dbg-server')):
         return exe('./v5dbg-server/target/debug/v5dbg-server')

@@ -1,6 +1,5 @@
 // Pretty printers for builtin types like int, char, etc
 #include <string>
-#include "memory.h"
 #include "v5dbg/memory.h"
 #include "v5dbg/pretty.h"
 #include "v5dbg/util.h"
@@ -10,28 +9,6 @@ V5Dbg_PrettyPrintInt(V5DbgMemoryObject* pMemory)
 {
   return $pretty_print_result(pMemory->getVariable().name, V5Dbg_FormatPrint("%i", *((int*)pMemory->getPtr())));
 }
-
-void*
-V5Dbg_AllocateInt(const std::string& value)
-{
-  // Allocate our integer on the heap
-  int* buffer = new int;
-
-  try
-  {
-    *buffer = std::stoi(value);
-  }
-  catch (std::exception& e)
-  {
-    delete buffer; // Bye
-
-    return nullptr;
-  }
-
-  return buffer;
-}
-
-$pretty_printer_allocator(V5Dbg_AllocateInt, MEMORY_TYPE_BASE_INT);
 
 v5dbg_pretty_printed_t
 V5Dbg_PrettyPrintPtr(V5DbgMemoryObject* pMemory)

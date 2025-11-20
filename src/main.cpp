@@ -35,14 +35,15 @@ opcontrol(void)
   $ntask;
   $function;
 
-  int x = 0;
-  $expose(x);
+  double x = 0; $expose(x);
+  std::string string = "Hello World!"; $expose(string);
+  float value = 52.5f; $expose(value);
 
   while (true)
   {
-    $cbreak(x % 4 == 0 && x != 0);
+    $cbreak(x > 20);
 
-    printf("%i\n", x);
+    printf("%f %s %f\n", x, string.c_str(), value);
 
     x++;
     pros::delay(300);
